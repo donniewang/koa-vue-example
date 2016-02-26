@@ -11,10 +11,15 @@ import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 import App from './app.vue';
+import routes from './routes';
 
-new Vue({
-    el:'body',
-    components:{ App }
-});
+Vue.use(VueRouter);
+
+var router = new VueRouter();
+
+routes(router);
+
+router.start(App, 'app');
