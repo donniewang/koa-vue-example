@@ -1,4 +1,6 @@
 ## koa-vue-example
+<p>If this example is useful to you, please Star it.</p>
+
 ## Highlight
 <p>1. Webpack for bundling</p>
 <p>2. Webpack dev server for development. </p>
