@@ -9,16 +9,16 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
 
-var config = require('./webpack.base.config')
+var config = require('./webpack.base.config');
 
 config.plugins = (config.plugins || []).concat([
     new Clean(['./public']),
     new HtmlWebpackPlugin({
-        template: './web/index.html'
+        template: './app/client/templates/index.html'
     }),
     //new webpack.optimize.CommonsChunkPlugin("scripts/common.js"),
     new CopyWebpackPlugin([
-        { from: './web/images', to: 'images' }
+        { from: './app/client/images', to: 'images' }
     ]),
     new ExtractTextPlugin('styles/styles.css', {
         publicPath: '/',
@@ -37,6 +37,6 @@ config.plugins = (config.plugins || []).concat([
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin()
-])
+]);
 
-module.exports = config
+module.exports = config;

@@ -2,24 +2,26 @@
  * Created by donnie on 16/2/22.
  */
 
-import '../../web/style/style-pc.less'
-import '../../web/style/style-phone.less'
-import '../../web/style/style-pad.less'
+import './style/style.less'
 
 import 'bootstrap/less/bootstrap.less';
-
 import 'font-awesome/less/font-awesome.less';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueRessource from 'vue-resource'
 
-import App from './app.vue';
+import app from './app.vue';
 import routes from './routes';
 
 Vue.use(VueRouter);
+Vue.use(VueRessource);
 
-var router = new VueRouter();
+var router = new VueRouter({
+    history: true,
+    saveScrollPosition: true
+});
 
 routes(router);
 
-router.start(App, 'app');
+router.start(app, 'app');

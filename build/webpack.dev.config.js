@@ -10,20 +10,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = require('./webpack.base.config');
 
-config.devtool = 'eval-source-map';
+config.devtool = 'inline-source-map';//'eval-source-map';
 
 config.entry = {
-    index:['./app/client/index.js','webpack-dev-server/client?http://0.0.0.0:8080','webpack/hot/only-dev-server']
+    index:['./app/client/index.js','webpack-dev-server/client?http://0.0.0.0:3001','webpack/hot/only-dev-server']
 };
 
 config.plugins = (config.plugins || []).concat([
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-        template: './web/index.html'
+        template: './app/client/templates/index.html'
     }),
     //new webpack.optimize.CommonsChunkPlugin("scripts/common.js"),
     new CopyWebpackPlugin([
-        { from: './web/images', to: 'images' }
+        { from: './app/client/images', to: 'images' }
     ]),
     new ExtractTextPlugin('styles/styles.css', {
         publicPath: '/',
@@ -36,5 +36,19 @@ config.plugins = (config.plugins || []).concat([
     }),
     new webpack.optimize.OccurenceOrderPlugin()
 ]);
+
+config.devServer = {
+    contentBase:'./public',
+    port:3001,
+    proxy: {
+        '*' : 'http://127.0.0.1:3000'
+    },
+    hot: true,
+    inline: true,
+    historyApiFallback: true,
+    colors: true,
+    stats: 'normal',
+    outputPath:'./public'
+};
 
 module.exports = config;
