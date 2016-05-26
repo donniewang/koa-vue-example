@@ -1,5 +1,6 @@
 ## koa-vue-example
 <p>If this example is useful to you, please Star it.</p>
+<p>如果该例子对你有帮助,请给个星赞一下.</p>
 
 ## Highlight
 <p>1. Webpack for bundling</p>
@@ -8,9 +9,6 @@
 <p>4. ES7 scripts style</p>
 <p>5. Simple examples to get insight to <b>koa</b>, <b>vue</b>, <b>vue-router</b>, <b>bootstrap</b>, include login authentication, page router, user data's CRUD. 
 <p>6. Save your time to decide which pattern is best fit for you in using <b>Vue</b>.</p>
-
-## koa-vue-example
-<p>如果该例子对你有帮助,请给个星赞一下.</p>
 
 ## 功能
 <p>1. Webpack打包</p>
