@@ -52,6 +52,18 @@ try {
         yield this.db.close();
     });
 
+    app.use(function*(next) {
+        if(!this.path.match(/\/api\/auth\/login/)&&this.path!="/"){
+            if (!!this.session.user) {
+                yield next;
+            } else {
+                this.status = 401;
+            }
+        } else {
+            yield next;
+        }
+    });
+
     app.use(routes.routes());
 
     app.listen(3000, function (err) {

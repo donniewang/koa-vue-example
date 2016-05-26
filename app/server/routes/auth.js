@@ -20,6 +20,9 @@ function *login(next) {
         if(username==='admin') {
             result.success = 1;
             result.token = this.sessionId;
+
+            this.session.user = {username,password};
+
         } else {
             var row = yield this.db.get('SELECT * FROM USERS WHERE username = ?' ,[username]);
             if(!!row && !!row.id) {
