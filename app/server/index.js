@@ -49,6 +49,7 @@ try {
         this.db = yield sqlite3('test.db');
         yield this.db.run('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY NOT NULL,username text,password text)');
         yield next ;
+        yield this.db.close();
     });
 
     app.use(routes.routes());

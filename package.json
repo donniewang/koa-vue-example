@@ -15,6 +15,7 @@
     "font-awesome": ">=4.3.0",
     "bootstrap": "3.3.5",
     "moment":"*",
+    "co": "^4.1.0",
     "co-sqlite3":"*"
   },
   "devDependencies": {

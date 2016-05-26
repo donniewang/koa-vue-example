@@ -41,7 +41,15 @@
         },
         methods: {
             doLogout() {
-                logout(this);
+
+                var self = this;
+
+                logout(this).then(function(res){
+                    delete self.$router.app.$token;
+                    self.$router.go('/login');
+                },function(e){
+                    alert(e.message);
+                });
             }
         }
     }

@@ -1,15 +1,12 @@
 <template>
     <div style="position:absolute;top:20%;bottom:20%;left:20%;right:20%;margin:auto;">
-        <div class="alert alert-danger" v-if="message">
-            <p>{{ message }}</p>
+        <div class="form-group">
+            <input type="text" class="form-control" v-model="username">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" v-model="form.username">
+            <input type="password" class="form-control" v-model="password">
         </div>
-        <div class="form-group">
-            <input type="password" class="form-control" v-model="form.password">
-        </div>
-        <button class="btn btn-primary" @click="doSubmit()">Login</button>
+        <button class="btn btn-primary" @click="doLogin()">Login</button>
     </div>
 </template>
 
@@ -18,21 +15,31 @@
     export default {
         data() {
             return {
-                form: {
-                    username:"admin",
-                    password:"1"
-                },
-                message:""
+                username:"admin",
+                password:"1"
             }
         },
         methods: {
-            doSubmit() {
-                if(!!this.form && !!this.form.username && !!this.form.password) {
-                    var form = {
-                        username:this.form.username,
-                        password:this.form.password
+            doLogin() {
+                if(!!this.username && !!this.password) {
+                    var self = this;
+
+                    var params = {
+                        username:this.username,
+                        password:this.password
                     };
-                    login(this,form,'/home');
+
+                    login(this,params).then(function(res){
+                        if(res.data.success==1 && !!res.data.token) {
+                            //can save to cookie
+                            self.$router.app.$token = res.data.token;
+                            self.$router.go('/home');
+                        } else {
+                            alert(res.data.message);
+                        }
+                    },function(e){
+                        alert(e.message);
+                    });
                 } else {
                     alert('Username or Password is not correct');
                 }
