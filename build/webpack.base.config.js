@@ -14,7 +14,7 @@ module.exports = {
     devtool: 'cheap-module-source-map',
     resolve: {
         root: "../",
-        extensions: ['', '.js', '.css'],
+        extensions: ['', '.js', '.css', '.vue'],
         modulesDirectories: ['node_modules','node_modules/bootstrap/dist/css']
     },
     output: {
@@ -52,7 +52,7 @@ module.exports = {
                 query : {
                     limit : 10000,
                     mimetype : 'application/font-woff',
-                    name : 'fonts/[name]_[hash].[ext]'
+                    name : 'fonts/[name].[ext]'
                 }
             },
             {
@@ -61,7 +61,7 @@ module.exports = {
                 query : {
                     limit : 10000,
                     mimetype : 'application/octet-stream',
-                    name : 'fonts/[name]_[hash].[ext]'
+                    name : 'fonts/[name].[ext]'
                 }
             },
             {
@@ -69,7 +69,7 @@ module.exports = {
                 loader: 'file',
                 query : {
                     limit : 10000,
-                    name : 'fonts/[name]_[hash].[ext]'
+                    name : 'fonts/[name].[ext]'
                 }
             },
             {
@@ -78,7 +78,7 @@ module.exports = {
                 query : {
                     limit : 10000,
                     mimetype : 'image/svg+xml',
-                    name : 'fonts/[name]_[hash].[ext]'
+                    name : 'fonts/[name].[ext]'
                 }
             }
         ]
@@ -89,5 +89,9 @@ module.exports = {
         loaders: {
             js: 'babel'
         }
+    },
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
     }
 };

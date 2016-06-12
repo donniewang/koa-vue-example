@@ -5,6 +5,7 @@ import moment from 'moment';
 import koa from 'koa';
 import session from 'koa-generic-session';
 import staticCache from 'koa-static-cache';
+import send from 'koa-send';
 
 import koaBody from 'koa-body';
 
@@ -20,7 +21,7 @@ try {
     app.keys = ["test"];
 
     app.use(session({
-        store: new sessionStore('session.db', {
+        store: new sessionStore(path.join(__dirname, '../../db/db'), {
         })
     }));
 
@@ -46,14 +47,14 @@ try {
     });
 
     app.use(function*(next){
-        this.db = yield sqlite3('test.db');
+        this.db = yield sqlite3(path.join(__dirname, '../../db/db'));
         yield this.db.run('CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY NOT NULL,username text,password text)');
         yield next ;
         yield this.db.close();
     });
 
     app.use(function*(next) {
-        if(!this.path.match(/\/api\/auth\/login/)&&this.path!="/"){
+        if(this.path.match(/\/api/)&&this.path.match!="/api/auth/login"){
             if (!!this.session.user) {
                 yield next;
             } else {
@@ -65,6 +66,10 @@ try {
     });
 
     app.use(routes.routes());
+
+    app.use(function* index() {
+        yield send(this, __dirname + '../../public/index.html');
+    });
 
     app.listen(3000, function (err) {
         if (err) throw err;

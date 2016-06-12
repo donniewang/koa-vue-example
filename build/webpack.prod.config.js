@@ -2,17 +2,21 @@
  * Created by donnie on 16/2/26.
  */
 
+var path = require('path');
+
 var webpack = require('webpack')
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var Clean = require('clean-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var config = require('./webpack.base.config');
 
 config.plugins = (config.plugins || []).concat([
-    new Clean(['./public']),
+    new CleanWebpackPlugin(['./public'],{
+        root: path.join(__dirname, '../')
+    }),
     new HtmlWebpackPlugin({
         template: './app/client/templates/index.html'
     }),

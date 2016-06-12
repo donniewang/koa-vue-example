@@ -11,17 +11,20 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueRessource from 'vue-resource'
 
-import app from './app.vue';
+import app from './components/app';
 import routes from './routes';
 
 Vue.use(VueRouter);
-Vue.use(VueRessource);
 
 var router = new VueRouter({
-    history: true,
-    saveScrollPosition: true
+    hashbang: true,
+    history: false
 });
 
 routes(router);
 
+Vue.use(VueRessource);
+
 router.start(app, 'app');
+
+window.router = router;
