@@ -54,7 +54,7 @@ try {
     });
 
     app.use(function*(next) {
-        if(this.path.match(/\/api/)&&this.path.match!="/api/auth/login"){
+        if(this.path.match(/\/api/)&&this.path!="/api/auth/login"){
             if (!!this.session.user) {
                 yield next;
             } else {

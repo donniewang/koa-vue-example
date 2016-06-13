@@ -23,7 +23,7 @@
     </div>
 
     <div class="footer">
-        <a class="btn btn-default" v-link="{ name: 'home', exact: true }"><i class="glyphicon glyphicon-home icon-white"></i> back</a>
+        <a class="btn btn-default" v-link="{ path: '/home', exact: true }"><i class="glyphicon glyphicon-home icon-white"></i> back</a>
     </div>
 </template>
 

@@ -23,14 +23,14 @@
     </div>
 
     <div class="footer">
-        <a class="btn btn-default" v-link="{ name: 'about', exact: true }"><i class="glyphicon glyphicon-edit icon-white"></i> about</a>
-        <a class="btn btn-default" v-link="{ name: 'user', exact: true }"><i class="glyphicon glyphicon-list-alt icon-white"></i> user</a>
+        <a class="btn btn-default" v-link="{ path: '/about', exact: true }"><i class="glyphicon glyphicon-edit icon-white"></i> about</a>
+        <a class="btn btn-default" v-link="{ path: '/user', exact: true }"><i class="glyphicon glyphicon-list-alt icon-white"></i> user</a>
         <a class="btn btn-default" @click="doLogout()"><i class="glyphicon glyphicon-save icon-white"></i> logout</a>
     </div>
 </template>
 
 <script>
-    import {logout} from '../services/auth'
+    import service from '../services/auth'
     export default {
         data () {
             return {
@@ -44,7 +44,7 @@
 
                 var self = this;
 
-                logout(this).then(function(res){
+                service.logout(this).then(function(res){
                     delete self.$router.app.$token;
                     self.$router.go('/login');
                 },function(e){

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {login} from '../services/auth'
+    import service from '../services/auth'
     export default {
         data() {
             return {
@@ -29,7 +29,7 @@
                         password:this.password
                     };
 
-                    login(this,params).then(function(res){
+                    service.login(this,params).then(function(res){
                         if(res.data.success==1 && !!res.data.token) {
                             //can save to cookie
                             self.$router.app.$token = res.data.token;

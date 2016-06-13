@@ -26,7 +26,7 @@
     <div class="footer">
         <a class="btn btn-default" @click="getMoreUsers()"><i class="glyphicon glyphicon-download icon-white"></i> load more</a>
         <a class="btn btn-default" @click="addUser()"><i class="glyphicon glyphicon-plus icon-white"></i> add</a>
-        <a class="btn btn-default" v-link="{ name: 'home', exact: true }"><i class="glyphicon glyphicon-home icon-white"></i> back</a>
+        <a class="btn btn-default" v-link="{ path: '/home', exact: true }"><i class="glyphicon glyphicon-home icon-white"></i> back</a>
     </div>
 
     <modal :show.sync="showModal">
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import {list,load,remove,save} from '../services/user'
+    import service from '../services/user'
 
     import modal from './modal.vue'
 
@@ -92,7 +92,7 @@
 
                 var params = {page,size};
 
-                list(this,params).then(function(res) {
+                service.list(this,params).then(function(res) {
                     if(res.data.success==1 && !!res.data.users) {
                         if(page===1) {
                             self.users = res.data.users;
@@ -118,7 +118,7 @@
 
                 var params = {id};
 
-                load(this,params).then(function(res) {
+                service.load(this,params).then(function(res) {
                     if(res.data.success==1 && !!res.data.user) {
                         self.user = res.data.user;
                         self.showModal = true;
@@ -137,7 +137,7 @@
 
                 var self = this;
 
-                save(this,params).then(function(res) {
+                service.save(this,params).then(function(res) {
                     if (res.data.success == 1) {
                         self.page = 1;
                         self.size = 10;
@@ -155,7 +155,7 @@
 
                 var self = this;
 
-                remove(this,params).then(function(res) {
+                service.remove(this,params).then(function(res) {
                     if(res.data.success==1) {
                         self.page = 1;
                         self.size = 10;
