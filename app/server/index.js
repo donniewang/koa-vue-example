@@ -68,7 +68,7 @@ try {
     app.use(routes.routes());
 
     app.use(function* index() {
-        yield send(this, __dirname + '../../public/index.html');
+        yield send(this, 'index.html', { root: path.join(__dirname, '../../public') });
     });
 
     app.listen(3000, function (err) {
