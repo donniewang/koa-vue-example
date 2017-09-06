@@ -27,7 +27,7 @@
 ## Hot Module Replacement
 <p>1. cmd: npm run debug</p>
 <p>2. go to http://localhost:3001</p>
-<p>3. modify the source codes, the browsers will auto-refresh</p>
+<p>3. modify the source codes, the browsers will auto-refresh.</p>
 
 ## LICENSE
 MIT
